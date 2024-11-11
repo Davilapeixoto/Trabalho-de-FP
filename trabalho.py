@@ -65,6 +65,8 @@ while True:
             s_historico()
 
     elif esc==2:
+        for i in arquivos_nome.keys():
+            print(f"{i}")
         escolha=input("Voce deseja pesquisar por Nome/Data/Tempo: ").lower().strip()
         nome=input("Qual o treino")
         if escolha=="nome" and nome in arquivos_nome:
@@ -81,6 +83,8 @@ while True:
 
 
     elif esc==3:
+        for i in arquivos_nome.keys():
+            print(f"{i}")
         nome=input("Qual o nome do arquivo que deseja editar: ")
         if nome in arquivos_nome:
             caminho=arquivos_nome[nome]
@@ -99,8 +103,19 @@ while True:
             arquivos_tempo[tempo] = caminho
             s_historico()
     elif esc==4:
-        if os.path.exists("trabalho/treinos.txt"):
-            os.remove("trabalho/treinos.txt")
+        for i in arquivos_nome.keys():
+            print(f"{i}")
+        nome=input("Qual treino deseja excluir: ")
+        if nome in arquivos_nome:
+            caminho = arquivos_nome.pop(nome)
+            arquivos_data = {chave: entrada for chave, entrada in arquivos_data.items() if entrada != caminho}
+            arquivos_tempo = {chave: entrada for chave, entrada in arquivos_tempo.items() if entrada != caminho}
+            if os.path.exists(caminho):
+                os.remove(caminho)
+            s_historico()
+            print("Treino deletado com sucesso.")
+        else:
+            print("Treino não encontrado.")
 
     elif esc==5:
         os.system("cls")
