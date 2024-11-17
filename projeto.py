@@ -114,4 +114,4 @@ while True:
     elif esc==6:
         break
 
-        
+        print("data")
