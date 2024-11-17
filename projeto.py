@@ -49,7 +49,7 @@ def carregar():
     return arquivo_nome
 arquivos_treino=carregar()
 while True:
-    print("1-Criar um treino\n2-visualizar treinos\n3-atualizar treinos\n4-deletar\n5-limpar terminal\n6-Implementar Metas ou desafios\n7 -Sair")
+    print("1-Criar um treino\n2-visualizar treinos\n3-atualizar treinos\n4-deletar\n5-limpar terminal\n6-Implementar Metas e desafios\n7 -Sair")
     try:
         esc = int(input("O que deseja?\n"))
     except ValueError:
@@ -111,6 +111,11 @@ while True:
 
     elif esc ==5:
         os.system("cls")
-    elif esc==6:
+    elif esc ==6:
+        velocidade = int(0)
+        tempo = int(0)
+        distancia = int(0)
+        tipo_meta = input("Digite o tipo de meta que você quer implementar: ")
+    elif esc==7:
         break
 
