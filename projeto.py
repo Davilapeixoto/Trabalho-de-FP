@@ -49,7 +49,7 @@ def carregar():
     return arquivo_nome
 arquivos_treino=carregar()
 while True:
-    print("1-Criar um treino\n2-visualizar treinos\n3-atualizar treinos\n4-deletar\n5-limpar terminal\n6-Sair")
+    print("1-Criar um treino\n2-visualizar treinos\n3-atualizar treinos\n4-deletar\n5-limpar terminal\n6-Implementar Metas ou desafios\n7 -Sair")
     try:
         esc = int(input("O que deseja?\n"))
     except ValueError:
@@ -114,4 +114,3 @@ while True:
     elif esc==6:
         break
 
-        print("data")
