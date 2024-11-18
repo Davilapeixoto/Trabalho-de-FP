@@ -49,7 +49,7 @@ def carregar():
     return arquivo_nome
 arquivos_treino=carregar()
 while True:
-    print("1-Criar um treino\n2-visualizar treinos\n3-atualizar treinos\n4-deletar\n5-limpar terminal\n6-Implementar Metas e desafios\n7 -Sair")
+    print("1-Criar um treino\n2-visualizar treinos\n3-analisar treino\n4-atualizar treinos\n5-Implementar Metas e desafios\n6-Treino aleatorio\n7-deletar\n8-limpar terminal\n9-Sair")
     try:
         esc = int(input("O que deseja?\n"))
     except ValueError:
@@ -90,7 +90,20 @@ while True:
             print("Arquivo alterado")
         else:
             print("Treino não encontrado no histórico ou inexistente.")
+
     elif esc==4:
+        tipo=input("Voce deseja analisar seu treinos por distancia ou tempo: ").lower().strip
+
+    elif esc==5:
+        velocidade = int(0)
+        tempo = int(0)
+        distancia = int(0)
+        tipo_meta = input("Digite o tipo de meta que você quer implementar: ")
+    
+    elif esc==6:
+        print("Treino aleatorio: ")
+
+    elif esc==7:
         cont = 0
         for treino in arquivos_treino:
             print(f"Treino {cont + 1}: {treino}")
@@ -109,13 +122,9 @@ while True:
         else:
             print("Treino não existe")
 
-    elif esc ==5:
+    elif esc ==8:
         os.system("cls")
-    elif esc ==6:
-        velocidade = int(0)
-        tempo = int(0)
-        distancia = int(0)
-        tipo_meta = input("Digite o tipo de meta que você quer implementar: ")
-    elif esc==7:
+    elif esc==9:
         break
 
+        
