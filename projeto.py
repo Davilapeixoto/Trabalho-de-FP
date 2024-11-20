@@ -230,6 +230,11 @@ def filtrar_tempos():
                             print(f"Erro ao interpretar os tempos no treino {treino}.")
                         except Exception:
                             print("Erro inesperado!")
+
+
+
+
+ult=""
 while True:
     print("1-Criar um treino\n2-visualizar treinos\n3-analisar treino\n4-atualizar treinos\n5-Implementar Metas e desafios\n6-Treino aleatorio\n7-deletar\n8-limpar terminal\n9-Sair\n10-gerar grafico")
     try:
@@ -309,7 +314,6 @@ while True:
     
     elif esc==6:
         print("Treino aleatorio: ")
-        numeros= [0,1,2,3,4,5,6]
         treino_aleat = ["treino1: treino de sprint: correr 1 minuto andar 2 minutos X 12",
 "treino2: treino força: caminhar com peso em superficie inclinada 30 minutos",
 "treino3: treino misto: correr ate a falha descansar 1:30 minutos X 15",
@@ -317,12 +321,14 @@ while True:
 "treino5: treino de sfinkter: fazer escala de corrida/andada 10x4",
 "treino6: treino de jogador: set de 1 hora com pace alto",
 "treino7: treino de ronnie: afunedo ate a falha"]
-        random.shuffle(numeros)
-        print(numeros[0])
-        print(treino_aleat[numeros[0]])
-        numeros.pop(0)
-        print(numeros)
-        print(numeros.pop(0)) 
+        while True:
+            treino_sugerido = random.choice(treino_aleat)
+            if treino_sugerido != ult:
+                ult=treino_sugerido
+                print(treino_sugerido)
+                break
+
+
     elif esc==7:
         cont = 0
         for treino in arquivos_treino:
