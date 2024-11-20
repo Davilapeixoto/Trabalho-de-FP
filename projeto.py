@@ -22,6 +22,9 @@ def salvar():
         print("Erro inesperado")
     with open("historico.txt", "a") as historico: 
         historico.write(f"{nome}:{caminho}\n")
+
+
+
 def alterar(nome):
     try:
         arquivo = open(f"{nome}.txt", "w")
@@ -38,6 +41,9 @@ def alterar(nome):
         print("Tente um numero")
     except Exception:
         print("Erro inesperado")
+
+
+
 def carregar():
     arquivo_nome={}
     if os.path.exists("historico.txt"):
@@ -48,6 +54,9 @@ def carregar():
                     chave, caminho = linha.split(":", 1)
                     arquivo_nome[chave] = caminho
     return arquivo_nome
+
+
+
 def gerar_grafico():
     datas = []
     distancias = []
@@ -84,6 +93,9 @@ def gerar_grafico():
         plt.show()
     else:
         print("Não há dados suficientes para gerar o gráfico.")
+
+
+
 def arquivo_metas():
     try:
         if os.path.exists("metas.txt"):
@@ -97,6 +109,9 @@ def arquivo_metas():
     except Exception as e:
         print(f"Erro ao carregar o arquivo de metas: {e}")
         return []
+    
+
+
 def salvar_metas(metas):
     try:
         with open("metas.txt","w") as file:
@@ -104,6 +119,9 @@ def salvar_metas(metas):
                 file.write(f"{descricao},{valor}\n")
     except Exception as e:
         print(f"Erro ao salvar as metas no arquivo: {e}")
+
+
+
 def adicionar_meta(metas):
     try:
         descricao = input("Digite a descrição da meta (exemplo: Correr 100 km por mês ou melhorar o tempo em 5 km):")
@@ -116,6 +134,9 @@ def adicionar_meta(metas):
             print("Insira um valor numérico válido para a meta")
     except Exception as e:
         print(f"Erro ao adicionar a meta: {e}")
+
+
+
 def atualizar_meta(metas):
     try:
         if not metas:
@@ -141,6 +162,9 @@ def atualizar_meta(metas):
             print("Número de meta inválido.")
     except Exception as e:
         print(f"Erro ao atualizar a meta: {e}")
+
+
+
 def mostrar_metas(metas):
     try:
         if not metas:
@@ -151,6 +175,9 @@ def mostrar_metas(metas):
                 print(f"{idx}. {descricao} - {valor}")
     except Exception as e:
         print(f"Erro ao exibir as metas: {e}")
+
+
+
 def registrar_progresso(metas):
     try:
         if not metas:
@@ -181,7 +208,6 @@ def registrar_progresso(metas):
     except Exception as e:
         print(f"Erro ao registrar o progresso: {e}")
 
-arquivos_treino=carregar()
 
 
 def filtrar_distancia():
@@ -207,8 +233,9 @@ def filtrar_distancia():
                         except Exception:
                             print("Erro inesperado!")
 
+
+
 def filtrar_tempos():
-    
     try:
         t = float(input("Qual tempo você quer ver: "))
     except ValueError:
@@ -233,7 +260,7 @@ def filtrar_tempos():
 
 
 
-
+arquivos_treino=carregar()
 hist=[]
 while True:
     print("1-Criar um treino\n2-visualizar treinos\n3-analisar treino\n4-atualizar treinos\n5-Implementar Metas e desafios\n6-Treino aleatorio\n7-deletar\n8-limpar terminal\n9-Sair\n10-gerar grafico")
@@ -242,6 +269,8 @@ while True:
     except ValueError:
         print("Tente um número válido")
         continue
+
+
     if esc==1:
         nome = input("Qual o nome do novo treino: ")
         if os.path.exists(f"{nome}.txt"):
@@ -249,6 +278,8 @@ while True:
         else:
             salvar()
             arquivos_treino=carregar()
+
+
     elif esc == 2:
         cont = 0
         for treino in arquivos_treino:
@@ -261,6 +292,7 @@ while True:
                 print(arquivo.read())
         else:
             print("Arquivo não encontrado no histórico ou inexistente.")
+
 
     elif esc == 3:
         try:
@@ -276,9 +308,9 @@ while True:
         except ValueError:
             print("Digite um número válido!\n")
                 
+
     elif esc==4:
         cont = 0
-        
         nome = input("Qual arquivo deseja alterar: ").lower().strip()
         caminho = arquivos_treino.get(nome)
         if caminho and os.path.exists(caminho):
@@ -326,9 +358,11 @@ while True:
             if treino_sugerido not in  hist:
                 hist.append(treino_sugerido)
                 print(treino_sugerido)
+                input("Pressione Enter para voltar ao menu!")
                 break
             else:
                 print("Cota batida")
+                input("Pressione Enter para voltar ao menu!")
                 break
 
 
