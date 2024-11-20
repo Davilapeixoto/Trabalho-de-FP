@@ -95,11 +95,18 @@ while True:
         tipo=input("Voce deseja analisar seu treinos por distancia ou tempo: ").lower().strip
 
     elif esc==5:
-        velocidade = int(0)
-        tempo = int(0)
-        distancia = int(0)
-        tipo_meta = input("Digite o tipo de meta que você quer implementar: ")
-    
+         def arquivo_metas():
+            try:
+                if os.path.exists("metas.txt"):
+                    with open("metas.txt","r") as file:
+                        metas = file.readlines()
+                        metas = [meta.strip() for meta in metas]
+                else:
+                    metas = []
+                    return metas
+            except Exception as e:
+                print(f"Erro ao carregar o arquivo de metas: {e}")
+                return []
     elif esc==6:
         print("Treino aleatorio: ")
 
