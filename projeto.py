@@ -308,13 +308,21 @@ while True:
                 print(f"Erro inesperado: {e}")
     
     elif esc==6:
-        print("Treino aleatório: ")
-        aleatorio = [1,2,3,4,5,6,7]
-        n = random.choice(aleatorio)
-        remove = aleatorio.remove(n)
-        with open("Davila/pp.txt", "r") as arquivo:
-                linhas = [linha.strip() for linha in arquivo.readlines()] 
-                print(linhas[n-1]) 
+        print("Treino aleatorio: ")
+        numeros= [0,1,2,3,4,5,6]
+        treino_aleat = ["treino1: treino de sprint: correr 1 minuto andar 2 minutos X 12",
+"treino2: treino força: caminhar com peso em superficie inclinada 30 minutos",
+"treino3: treino misto: correr ate a falha descansar 1:30 minutos X 15",
+"treino4: treino de fadiga: correr sem pausa",  
+"treino5: treino de sfinkter: fazer escala de corrida/andada 10x4",
+"treino6: treino de jogador: set de 1 hora com pace alto",
+"treino7: treino de ronnie: afunedo ate a falha"]
+        random.shuffle(numeros)
+        print(numeros[0])
+        print(treino_aleat[numeros[0]])
+        numeros.pop(0)
+        print(numeros)
+        print(numeros.pop(0)) 
     elif esc==7:
         cont = 0
         for treino in arquivos_treino:
