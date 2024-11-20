@@ -95,7 +95,7 @@ def atualizar_meta(metas):
                 nova_descricao = input("Digite a nova descrição da meta: ")
                 metas[meta_id - 1][0] = nova_descricao
                 print(f"Descrição da meta atualizada para: {nova_descricao}")
-            novo_valor = input("Digite o novo valor para a meta: ")
+                novo_valor = input("Digite o novo valor para a meta: ")
             if novo_valor.isdigit():
                 metas[meta_id - 1][1] = int(novo_valor) 
                 print(f"Meta atualizada com sucesso para {novo_valor}.")
