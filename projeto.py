@@ -139,6 +139,16 @@ while True:
                 salvar_metas(metas)
             except Exception as e:
                 print(f"Erro ao adicionar a meta: {e}")
+        def mostrar_metas(metas):
+            try:
+                if not metas:
+                    print("Nenhuma meta definida.")
+                else:
+                    print("\nMeta(s) Atual(is):")
+                    for idx,meta in enumerate(metas,start = 1):
+                        print(f"{idx}.{meta}")
+            except Exception as e:
+                print(f"Erro ao exibir as metas: {e}")
     elif esc==7:
         break
 
