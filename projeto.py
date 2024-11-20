@@ -54,6 +54,7 @@ def arquivo_metas():
             with open("metas.txt","r") as file:
                 metas = file.readlines()
                 metas = [meta.strip().split(",") for meta in metas]
+                metas = [[descricao, int(valor)] for descricao, valor in metas]
         else:
             metas = []
         return metas
@@ -94,7 +95,7 @@ def atualizar_meta(metas):
                 print(f"Meta atualizada com sucesso para {novo_valor}.")
                 salvar_metas(metas)
             else:
-                print("Por favor, insira um valor numérico válido para a nova meta.")
+                print("Insira um valor numérico válido para a nova meta.")
         else:
             print("Número de meta inválido.")
     except Exception as e:
@@ -120,7 +121,16 @@ def registrar_progresso(metas):
             meta_id = int(meta_id) 
             progresso = input("Digite o progresso(exemplo: Corri 10 km): ")
             if progresso.isdigit():
+                progresso = int(progresso)
+                descricao, valor_meta = metas[meta_id - 1]
+                valor_meta -= progresso
+                if valor_meta < 0:
+                    valor_meta = 0
+                metas[meta_id - 1] [1] = valor_meta
                 print(f"Progresso registrado: {progresso} para a meta de {metas[meta_id - 1][0]} com valor {metas[meta_id - 1][1]}.")
+                salvar_metas(metas)
+                if valor_meta == 0:
+                    print(f"a sua meta {descricao} foi atingida.")
             else:
                 print("Insira um valor numérico válido para o progresso.")
         else:
