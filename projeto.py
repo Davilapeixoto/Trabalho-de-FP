@@ -9,7 +9,7 @@ def salvar():
         arquivo = open(f"{nome}.txt", "a")
         data = input("Qual a data: ")
         distancia = float(input("Qual a distância em metros: "))
-        tempo = int(input("Qual foi o tempo de corrida em minutos: "))
+        tempo = float(input("Qual foi o tempo de corrida em minutos: "))
         localizacao = input("Qual foi a localização: ")
         clima = input("Quais foram as condições climáticas: ")
         treino = input("Como foi o treino: ")
@@ -27,7 +27,7 @@ def alterar(nome):
         arquivo = open(f"{nome}.txt", "w")
         data = input("Qual a data: ")
         distancia = float(input("Qual a distância em metros: "))
-        tempo = int(input("Qual foi o tempo de corrida em minutos: "))
+        tempo = float(input("Qual foi o tempo de corrida em minutos: "))
         localizacao = input("Qual foi a localização: ")
         clima = input("Quais foram as condições climáticas: ")
         treino = input("Como foi o treino: ")
@@ -221,8 +221,8 @@ def filtrar_tempos():
                 for linha in linhas:
                     if linha.startswith("Tempo:"):
                         try:
-                            tempos = float(linha.split(":")[1].strip())
-                            if tempos == t:
+                            tempo = float(linha.split(":")[1].strip())
+                            if tempo == t:
                                 print(f"\nTreino: {treino}")
                                 print("".join(linhas))
                                 break
@@ -233,7 +233,7 @@ def filtrar_tempos():
 while True:
     print("1-Criar um treino\n2-visualizar treinos\n3-analisar treino\n4-atualizar treinos\n5-Implementar Metas e desafios\n6-Treino aleatorio\n7-deletar\n8-limpar terminal\n9-Sair\n10-gerar grafico")
     try:
-        esc = int(input("O que deseja?\n"))
+        esc = int(input("O que deseja?"))
     except ValueError:
         print("Tente um número válido")
         continue
@@ -258,16 +258,19 @@ while True:
             print("Arquivo não encontrado no histórico ou inexistente.")
 
     elif esc == 3:
-        tipo = int(input("Você deseja analisar seus treinos por distância [1] ou tempo [2]: "))
-        if tipo==1:
-            filtrar_distancia()
-            input("Pressione Enter para voltar ao menu...")
-        elif tipo==2:
-            filtrar_tempos()
-            input("Pressione Enter para voltar ao menu...")
-        else:
-            print("Analise inválida!")
-
+        try:
+            tipo = int(input("Você deseja analisar seus treinos por distância [1] ou tempo [2]: "))
+            if tipo==1:
+                filtrar_distancia()
+                input("Pressione Enter para voltar ao menu!")
+            elif tipo==2:
+                filtrar_tempos()
+                input("Pressione Enter para voltar ao menu!")
+            else:
+                print("Analise inválida!")
+        except ValueError:
+            print("Digite um número válido!\n")
+                
     elif esc==4:
         cont = 0
         
@@ -282,12 +285,7 @@ while True:
     elif esc==5:
         metas = arquivo_metas()
         while True:
-            print("\nSistema de Gerenciamento de Metas")
-            print("1.Adicionar uma meta")
-            print("2.Mostrar metas")
-            print("3.Registrar progresso de uma meta")
-            print("4.Atualizar meta")
-            print("5.Sair")
+            print("\nSistema de Gerenciamento de Metas\n1.Adicionar uma meta\n2.Mostrar metas\n3.Registrar progresso de uma meta\n4.Atualizar meta\n5.Sair")
 
             try:
                 opcao = int(input("Escolha uma opção "))
@@ -303,14 +301,14 @@ while True:
                     print("Saindo do sistema.")
                     break
                 else:
-                    print("Opção inválida.Tente uma opção de 1 á 5")
+                    print("Opção inválida.Tente uma opção de 1 a 5")
             except ValueError:
                 print("Insira uma opção válida.")
             except Exception as e:
                 print(f"Erro inesperado: {e}")
     
     elif esc==6:
-        print("Treino aleatorio: ")
+        print("Treino aleatório: ")
         aleatorio = [1,2,3,4,5,6,7]
         n = random.choice(aleatorio)
         remove = aleatorio.remove(n)
