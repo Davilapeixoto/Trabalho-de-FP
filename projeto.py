@@ -124,6 +124,13 @@ while True:
             except Exception as e:
                 print(f"Erro ao carregar o arquivo de metas: {e}")
                 return []
+        def salvar_metas(metas):
+            try:
+                with open("metas.txt","w") as file:
+                    for meta in metas:
+                        file.write(meta + "\n")
+            except Exception as e:
+                print(f"Erro ao salvar as metas no arquivo: {e}")
     elif esc==7:
         break
 
