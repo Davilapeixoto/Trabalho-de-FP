@@ -234,7 +234,7 @@ def filtrar_tempos():
 
 
 
-ult=""
+hist=[]
 while True:
     print("1-Criar um treino\n2-visualizar treinos\n3-analisar treino\n4-atualizar treinos\n5-Implementar Metas e desafios\n6-Treino aleatorio\n7-deletar\n8-limpar terminal\n9-Sair\n10-gerar grafico")
     try:
@@ -323,9 +323,12 @@ while True:
 "treino7: treino de ronnie: afunedo ate a falha"]
         while True:
             treino_sugerido = random.choice(treino_aleat)
-            if treino_sugerido != ult:
-                ult=treino_sugerido
+            if treino_sugerido not in  hist:
+                hist.append(treino_sugerido)
                 print(treino_sugerido)
+                break
+            else:
+                print("Cota batida")
                 break
 
 
