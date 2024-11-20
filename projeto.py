@@ -149,6 +149,22 @@ while True:
                         print(f"{idx}.{meta}")
             except Exception as e:
                 print(f"Erro ao exibir as metas: {e}")
+        def registrar_progresso(metas):
+            try:
+                if not metas:
+                    print("Não há metas para registrar o progresso em.")
+                    return
+                mostrar_metas(metas)
+                meta_id = int(input("Escolha o número da meta para registrar o progresso em: "))
+                if 1 <= meta_id <= len(metas):
+                    progresso = input("Digite o progresso(exemplo: Corri 10 km): ")
+                    print(f"Progresso registrado: {progresso} para a meta: {metas[meta_id - 1]}")
+                else:
+                    print("Número de meta inválido.")
+            except ValueError:
+                print("Por favor,insira um número válido.")
+            except Exception as e:
+                print(f"Erro ao registrar o progresso: {e}")
     elif esc==7:
         break
 
