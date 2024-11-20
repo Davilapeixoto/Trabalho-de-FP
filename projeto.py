@@ -53,18 +53,18 @@ def arquivo_metas():
         if os.path.exists("metas.txt"):
             with open("metas.txt","r") as file:
                 metas = file.readlines()
-                metas = [int(meta.strip()) for meta in metas]
+                metas = [meta.strip().split(",") for meta in metas]
         else:
             metas = []
-            return metas
+        return metas
     except Exception as e:
         print(f"Erro ao carregar o arquivo de metas: {e}")
         return []
 def salvar_metas(metas):
     try:
         with open("metas.txt","w") as file:
-            for meta in metas:
-                file.write(str(meta) + "\n")
+            for descricao, valor in metas:
+                file.write(f"{descricao},{valor}\n")
     except Exception as e:
         print(f"Erro ao salvar as metas no arquivo: {e}")
 def adicionar_meta(metas):
@@ -72,7 +72,7 @@ def adicionar_meta(metas):
         descricao = input("Digite a descrição da meta (exemplo: Correr 100 km por mês ou melhorar o tempo em 5 km):")
         valor_meta = input("Digite o valor da meta (exemplo: 100 para 100 km): ")
         if valor_meta.isdigit():
-            metas.append(int(valor_meta)) 
+            metas.append([descricao, int(valor_meta)])
             print("Meta adicionada com sucesso.")
             salvar_metas(metas)
         else:
@@ -90,7 +90,7 @@ def atualizar_meta(metas):
             meta_id = int(meta_id)
             novo_valor = input("Digite o novo valor para a meta: ")
             if novo_valor.isdigit():
-                metas[meta_id - 1] = int(novo_valor) 
+                metas[meta_id - 1][1] = int(novo_valor) 
                 print(f"Meta atualizada com sucesso para {novo_valor}.")
                 salvar_metas(metas)
             else:
@@ -105,8 +105,8 @@ def mostrar_metas(metas):
             print("Nenhuma meta definida.")
         else:
             print("\nMeta(s) Atual(is):")
-            for idx,meta in enumerate(metas,start = 1):
-                print(f"{idx}.{meta}")
+            for idx, (descricao, valor) in enumerate(metas, start=1):
+                print(f"{idx}. {descricao} - {valor}")
     except Exception as e:
         print(f"Erro ao exibir as metas: {e}")
 def registrar_progresso(metas):
@@ -120,13 +120,13 @@ def registrar_progresso(metas):
             meta_id = int(meta_id) 
             progresso = input("Digite o progresso(exemplo: Corri 10 km): ")
             if progresso.isdigit():
-                print(f"Progresso registrado: {progresso} para a meta de {metas[meta_id - 1]}.")
+                print(f"Progresso registrado: {progresso} para a meta de {metas[meta_id - 1][0]} com valor {metas[meta_id - 1][1]}.")
             else:
                 print("Insira um valor numérico válido para o progresso.")
         else:
             print("Número de meta inválido.")
     except ValueError:
-        print("Por favor,insira um número válido.")
+        print("insira um número válido.")
     except Exception as e:
         print(f"Erro ao registrar o progresso: {e}")
 while True:
