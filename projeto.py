@@ -53,7 +53,7 @@ def arquivo_metas():
         if os.path.exists("metas.txt"):
             with open("metas.txt","r") as file:
                 metas = file.readlines()
-                metas = [meta.strip() for meta in metas]
+                metas = [int(meta.strip()) for meta in metas]
         else:
             metas = []
             return metas
@@ -64,17 +64,41 @@ def salvar_metas(metas):
     try:
         with open("metas.txt","w") as file:
             for meta in metas:
-                file.write(meta + "\n")
+                file.write(str(meta) + "\n")
     except Exception as e:
         print(f"Erro ao salvar as metas no arquivo: {e}")
 def adicionar_meta(metas):
     try:
         descricao = input("Digite a descrição da meta (exemplo: Correr 100 km por mês ou melhorar o tempo em 5 km):")
-        metas.append(descricao)
-        print("Meta adicionada com sucesso.")
-        salvar_metas(metas)
+        valor_meta = input("Digite o valor da meta (exemplo: 100 para 100 km): ")
+        if valor_meta.isdigit():
+            metas.append(int(valor_meta)) 
+            print("Meta adicionada com sucesso.")
+            salvar_metas(metas)
+        else:
+            print("Insira um valor numérico válido para a meta")
     except Exception as e:
         print(f"Erro ao adicionar a meta: {e}")
+def atualizar_meta(metas):
+    try:
+        if not metas:
+            print("Não há metas para atualizar.")
+            return
+        mostrar_metas(metas)
+        meta_id = input("Escolha o número da meta que deseja atualizar: ")
+        if meta_id.isdigit() and 1 <= int(meta_id) <= len(metas):
+            meta_id = int(meta_id)
+            novo_valor = input("Digite o novo valor para a meta: ")
+            if novo_valor.isdigit():
+                metas[meta_id - 1] = int(novo_valor) 
+                print(f"Meta atualizada com sucesso para {novo_valor}.")
+                salvar_metas(metas)
+            else:
+                print("Por favor, insira um valor numérico válido para a nova meta.")
+        else:
+            print("Número de meta inválido.")
+    except Exception as e:
+        print(f"Erro ao atualizar a meta: {e}")
 def mostrar_metas(metas):
     try:
         if not metas:
@@ -91,10 +115,14 @@ def registrar_progresso(metas):
             print("Não há metas para registrar o progresso em.")
             return
         mostrar_metas(metas)
-        meta_id = int(input("Escolha o número da meta para registrar o progresso em: "))
-        if 1 <= meta_id <= len(metas):
+        meta_id = (input("Escolha o número da meta para registrar o progresso em: "))
+        if meta_id.isdigit() and 1 <= int(meta_id) <= len(metas):
+            meta_id = int(meta_id) 
             progresso = input("Digite o progresso(exemplo: Corri 10 km): ")
-            print(f"Progresso registrado: {progresso} para a meta: {metas[meta_id - 1]}")
+            if progresso.isdigit():
+                print(f"Progresso registrado: {progresso} para a meta de {metas[meta_id - 1]}.")
+            else:
+                print("Insira um valor numérico válido para o progresso.")
         else:
             print("Número de meta inválido.")
     except ValueError:
@@ -154,7 +182,8 @@ while True:
             print("1.Adicionar uma meta")
             print("2.Mostrar metas")
             print("3.Registrar progresso de uma meta")
-            print("4.Sair")
+            print("4.Atualizar meta")
+            print("5.Sair")
 
             try:
                 opcao = int(input("Escolha uma opção "))
@@ -165,10 +194,12 @@ while True:
                 elif opcao == 3:
                     registrar_progresso(metas)
                 elif opcao == 4:
+                    atualizar_meta(metas)
+                elif opcao == 5:
                     print("Saindo do sistema.")
                     break
                 else:
-                    print("Opção inválida.Tente uma opção de 1 á 4")
+                    print("Opção inválida.Tente uma opção de 1 á 5")
             except ValueError:
                 print("Insira uma opção válida.")
             except Exception as e:
