@@ -1,1 +1,1 @@
-novo:novo.txt
+anna:anna.txt

@@ -1,0 +1,7 @@
+Tipo: corrida
+Data: 2000-12-15
+Distância: 2563.0
+Tempo: 12.0
+Localização: recife
+Clima: boas
+Treino: oboas

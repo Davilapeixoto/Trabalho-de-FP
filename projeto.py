@@ -7,13 +7,14 @@ os.system("cls")
 def salvar():
     try:
         arquivo = open(f"{nome}.txt", "a")
+        tipo = input(f"Qual o tipo de exercicio: ")
         data = input("Qual a data: ")
         distancia = float(input("Qual a distância em metros: "))
         tempo = float(input("Qual foi o tempo de corrida em minutos: "))
         localizacao = input("Qual foi a localização: ")
         clima = input("Quais foram as condições climáticas: ")
-        treino = input("Como foi o treino: ")
-        arquivo.write(f"Data: {data}\nDistância: {str(distancia)}\nTempo: {str(tempo)}\nLocalização: {localizacao}\nClima: {clima}\nTreino: {treino}\n")
+        treino = input(f"Como foi o {tipo}: ")
+        arquivo.write(f"Tipo: {tipo}\nData: {data}\nDistância: {str(distancia)}\nTempo: {str(tempo)}\nLocalização: {localizacao}\nClima: {clima}\nTreino: {treino}\n")
         arquivo.close()
         caminho = f"{nome}.txt"
     except ValueError:
@@ -28,13 +29,14 @@ def salvar():
 def alterar(nome):
     try:
         arquivo = open(f"{nome}.txt", "w")
+        tipo = input(f"Qual o tipo de exercicio: ")
         data = input("Qual a data: ")
         distancia = float(input("Qual a distância em metros: "))
         tempo = float(input("Qual foi o tempo de corrida em minutos: "))
         localizacao = input("Qual foi a localização: ")
         clima = input("Quais foram as condições climáticas: ")
-        treino = input("Como foi o treino: ")
-        arquivo.write(f"Data: {data}\nDistância: {str(distancia)}\nTempo: {str(tempo)}\nLocalização: {localizacao}\nClima: {clima}\nTreino: {treino}\n")
+        treino = input(f"Como foi o {tipo}: ")
+        arquivo.write(f"Tipo: {tipo}\nData: {data}\nDistância: {str(distancia)}\nTempo: {str(tempo)}\nLocalização: {localizacao}\nClima: {clima}\nTreino: {treino}\n")
         arquivo.close()
         caminho = f"{nome}.txt"
     except ValueError:

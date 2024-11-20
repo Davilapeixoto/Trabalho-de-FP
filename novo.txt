@@ -1,6 +1,0 @@
-Data: 11/12/2006
-Distância: 10.0
-Tempo: 12
-Localização: paiva
-Clima: tiroteio
-Treino: otimo
