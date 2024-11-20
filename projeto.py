@@ -95,7 +95,7 @@ while True:
         tipo=input("Voce deseja analisar seu treinos por distancia ou tempo: ").lower().strip
 
     elif esc==5:
-         def arquivo_metas():
+        def arquivo_metas():
             try:
                 if os.path.exists("metas.txt"):
                     with open("metas.txt","r") as file:
@@ -107,6 +107,13 @@ while True:
             except Exception as e:
                 print(f"Erro ao carregar o arquivo de metas: {e}")
                 return []
+        def salvar_metas(metas):
+            try:
+                with open("metas.txt","w") as file:
+                    for meta in metas:
+                        file.write(meta + "\n")
+            except Exception as e:
+                print(f"Erro ao salvar as metas no arquivo: {e}")
     elif esc==6:
         print("Treino aleatorio: ")
 
