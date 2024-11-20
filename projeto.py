@@ -49,7 +49,7 @@ def carregar():
     return arquivo_nome
 arquivos_treino=carregar()
 while True:
-    print("1-Criar um treino\n2-visualizar treinos\n3-atualizar treinos\n4-deletar\n5-limpar terminal\n6-Implementar Metas e desafios\n7 -Sair")
+    print("1-Criar um treino\n2-visualizar treinos\n3-analisar treino\n4-atualizar treinos\n5-Implementar Metas e desafios\n6-Treino aleatorio\n7-deletar\n8-limpar terminal\n9-Sair")
     try:
         esc = int(input("O que deseja?\n"))
     except ValueError:
@@ -90,7 +90,20 @@ while True:
             print("Arquivo alterado")
         else:
             print("Treino não encontrado no histórico ou inexistente.")
+
     elif esc==4:
+        tipo=input("Voce deseja analisar seu treinos por distancia ou tempo: ").lower().strip
+
+    elif esc==5:
+        velocidade = int(0)
+        tempo = int(0)
+        distancia = int(0)
+        tipo_meta = input("Digite o tipo de meta que você quer implementar: ")
+    
+    elif esc==6:
+        print("Treino aleatorio: ")
+
+    elif esc==7:
         cont = 0
         for treino in arquivos_treino:
             print(f"Treino {cont + 1}: {treino}")
@@ -109,87 +122,7 @@ while True:
         else:
             print("Treino não existe")
 
-    elif esc ==5:
+    elif esc ==8:
         os.system("cls")
-    elif esc ==6:
-        def arquivo_metas():
-            try:
-                if os.path.exists("metas.txt"):
-                    with open("metas.txt","r") as file:
-                        metas = file.readlines()
-                        metas = [meta.strip() for meta in metas]
-                else:
-                    metas = []
-                    return metas
-            except Exception as e:
-                print(f"Erro ao carregar o arquivo de metas: {e}")
-                return []
-        def salvar_metas(metas):
-            try:
-                with open("metas.txt","w") as file:
-                    for meta in metas:
-                        file.write(meta + "\n")
-            except Exception as e:
-                print(f"Erro ao salvar as metas no arquivo: {e}")
-        def adicionar_meta(metas):
-            try:
-                descricao = input("Digite a descrição da meta (exemplo: Correr 100 km por mês ou melhorar o tempo em 5 km):")
-                metas.append(descricao)
-                print("Meta adicionada com sucesso.")
-                salvar_metas(metas)
-            except Exception as e:
-                print(f"Erro ao adicionar a meta: {e}")
-        def mostrar_metas(metas):
-            try:
-                if not metas:
-                    print("Nenhuma meta definida.")
-                else:
-                    print("\nMeta(s) Atual(is):")
-                    for idx,meta in enumerate(metas,start = 1):
-                        print(f"{idx}.{meta}")
-            except Exception as e:
-                print(f"Erro ao exibir as metas: {e}")
-        def registrar_progresso(metas):
-            try:
-                if not metas:
-                    print("Não há metas para registrar o progresso em.")
-                    return
-                mostrar_metas(metas)
-                meta_id = int(input("Escolha o número da meta para registrar o progresso em: "))
-                if 1 <= meta_id <= len(metas):
-                    progresso = input("Digite o progresso(exemplo: Corri 10 km): ")
-                    print(f"Progresso registrado: {progresso} para a meta: {metas[meta_id - 1]}")
-                else:
-                    print("Número de meta inválido.")
-            except ValueError:
-                print("Por favor,insira um número válido.")
-            except Exception as e:
-                print(f"Erro ao registrar o progresso: {e}")
-        metas = arquivo_metas()
-        while True:
-            print("\n Sistema de Gerenciamento de Metas")
-            print("1.Adicionar uma meta")
-            print("2.Mostrar metas")
-            print("3.Registrar progresso de uma meta")
-            print("4.Sair")
-
-            try:
-                opcao = int(input("Escolha uma opção "))
-                if opcao == 1:
-                    adicionar_meta(metas)
-                elif opcao == 2:
-                    mostrar_metas(metas)
-                elif opcao == 3:
-                    registrar_progresso(metas)
-                elif opcao == 4:
-                    print("Saindo do sistema.")
-                    break
-                else:
-                    print("Opção inválida.Tente uma opção de 1 á 4")
-            except ValueError:
-                print("Insira uma opção válida.")
-            except Exception as e:
-                print(f"Erro inesperado: {e}")
-    elif esc==7:
+    elif esc==9:
         break
-
