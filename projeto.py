@@ -130,7 +130,7 @@ def atualizar_meta(metas):
                 nova_descricao = input("Digite a nova descrição da meta: ")
                 metas[meta_id - 1][0] = nova_descricao
                 print(f"Descrição da meta atualizada para: {nova_descricao}")
-            novo_valor = input("Digite o novo valor para a meta: ")
+                novo_valor = input("Digite o novo valor para a meta: ")
             if novo_valor.isdigit():
                 metas[meta_id - 1][1] = int(novo_valor) 
                 print(f"Meta atualizada com sucesso para {novo_valor}.")
@@ -204,6 +204,8 @@ def filtrar_distancia():
                                         break
                         except ValueError:
                             print(f"Erro ao interpretar a distância no treino {treino}.")
+                        except Exception:
+                            print("Erro inesperado!")
 
 def filtrar_tempos():
     
@@ -226,6 +228,8 @@ def filtrar_tempos():
                                 break
                         except ValueError:
                             print(f"Erro ao interpretar os tempos no treino {treino}.")
+                        except Exception:
+                            print("Erro inesperado!")
 while True:
     print("1-Criar um treino\n2-visualizar treinos\n3-analisar treino\n4-atualizar treinos\n5-Implementar Metas e desafios\n6-Treino aleatorio\n7-deletar\n8-limpar terminal\n9-Sair\n10-gerar grafico")
     try:
