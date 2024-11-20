@@ -1,5 +1,6 @@
 import os
 os.system("cls")
+import random
 def salvar():
     try:
         arquivo = open(f"{nome}.txt", "a")
@@ -101,7 +102,15 @@ while True:
         tipo_meta = input("Digite o tipo de meta que você quer implementar: ")
     
     elif esc==6:
-        print("Treino aleatorio: ")
+            aleatorio = [1,2,3,4,5,6,7]       
+            n = random.choice(aleatorio)
+            remove = aleatorio.remove(n)
+            
+                    
+            with open("pp.txt", "r") as arquivo:
+                linhas = [linha.strip() for linha in arquivo.readlines()] 
+                        #Se você quer ler todas as linhas de uma vez e garantir que cada uma esteja sem a quebra de linha, pode usar readlines() e aplicar strip() em cada linha:
+                print(linhas[n-1]) #-1 é pra contar certinho 
 
     elif esc==7:
         cont = 0
