@@ -148,6 +148,31 @@ while True:
                 print("Por favor,insira um número válido.")
             except Exception as e:
                 print(f"Erro ao registrar o progresso: {e}")
+        metas = arquivo_metas()
+        while True:
+            print("\n Sistema de Gerenciamento de Metas")
+            print("1.Adicionar uma meta")
+            print("2.Mostrar metas")
+            print("3.Registrar progresso de uma meta")
+            print("4.Sair")
+
+            try:
+                opcao = int(input("Escolha uma opção "))
+                if opcao == 1:
+                    adicionar_meta(metas)
+                elif opcao == 2:
+                    mostrar_metas(metas)
+                elif opcao == 3:
+                    registrar_progresso(metas)
+                elif opcao == 4:
+                    print("Saindo do sistema.")
+                    break
+                else:
+                    print("Opção inválida.Tente uma opção de 1 á 4")
+            except ValueError:
+                print("Insira uma opção válida.")
+            except Exception as e:
+                print(f"Erro inesperado: {e}")
     elif esc==6:
         print("Treino aleatorio: ")
 
