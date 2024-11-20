@@ -114,6 +114,14 @@ while True:
                         file.write(meta + "\n")
             except Exception as e:
                 print(f"Erro ao salvar as metas no arquivo: {e}")
+        def adicionar_meta(metas):
+            try:
+                descricao = input("Digite a descrição da meta (exemplo: Correr 100 km por mês ou melhorar o tempo em 5 km):")
+                metas.append(descricao)
+                print("Meta adicionada com sucesso.")
+                salvar_metas(metas)
+            except Exception as e:
+                print(f"Erro ao adicionar a meta: {e}")
     elif esc==6:
         print("Treino aleatorio: ")
 
