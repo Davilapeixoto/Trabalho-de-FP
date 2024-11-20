@@ -358,11 +358,9 @@ while True:
             if treino_sugerido not in  hist:
                 hist.append(treino_sugerido)
                 print(treino_sugerido)
-                input("Pressione Enter para voltar ao menu!")
                 break
-            else:
+            elif len(hist)>=7:
                 print("Cota batida")
-                input("Pressione Enter para voltar ao menu!")
                 break
 
 
