@@ -50,5 +50,5 @@ Ao escolher a 10ª opção, será gerado um gráfico com o desempenho do usuári
 
 ---
 
-## [Descrição da Imagem](fluxo/fluxograma.png)
+## [Descrição da Imagem](fluxo)
 ## [Link para o Fluxograma](https://miro.com/app/board/uXjVLCQ0g8k=/?share_link_id=426911773694)
