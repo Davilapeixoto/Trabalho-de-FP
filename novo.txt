@@ -1,6 +1,6 @@
-Data: 2005-02-16
-Distância: 600.0
-Tempo: 6.0
-Localização: recife
-Clima: normais
-Treino: muito bom
+Data: 2024-08-31
+Distância: 2321.0
+Tempo: 5.0
+Localização: 
+Clima: 
+Treino: 

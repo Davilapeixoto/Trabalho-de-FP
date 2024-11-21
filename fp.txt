@@ -1,0 +1,7 @@
+2005-02-12
+Data: 2005-02-12
+Distância: 5467.0
+Tempo: 60.0
+Localização: gamel
+Clima: boas
+Treino: muito bom

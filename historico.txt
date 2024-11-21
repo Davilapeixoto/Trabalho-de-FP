@@ -1,3 +1,7 @@
 normal:normal.txt
 treno2:treno2.txt
 novo:novo.txt
+f:f.txt
+g:g.txt
+aba:aba.txt
+fp:fp.txt

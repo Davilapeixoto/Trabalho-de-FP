@@ -12,15 +12,39 @@ def salvar():
     try:
         arquivo = open(f"{nome}.txt", "a")
         while True:
-            data = input("Qual a data: ")
+            data = input("Qual a data (YYYY-MM-DD): ")
             if len(data) == 10 and data[4] == '-' and data[7] == '-':
                 ano, mes, dia = data[:4], data[5:7], data[8:]
                 if ano.isdigit() and mes.isdigit() and dia.isdigit():
-                    break
+                    ano, mes, dia = int(ano), int(mes), int(dia)
+                    if 1 <= mes <= 12:
+                        dias_no_mes = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+                        if mes == 2 and (ano % 4 == 0 and (ano % 100 != 0 or ano % 400 == 0)):
+                            dias_no_mes[1] = 29
+                        if 1 <= dia <= dias_no_mes[mes - 1]:
+                            arquivo.write(data + "\n")
+                            print("Data salva com sucesso!")
+                            break
+                        else:
+                            print("Dia inválido. Tente novamente.")
+                    else:
+                        print("Mês inválido. Tente novamente.")
+                else:
+                    print("Ano, mês ou dia não são números. Tente novamente.")
             else:
                 print("Tente escrever a data no formato (YYYY-MM-DD) Y=ano M-mes D=dia")
-        distancia = float(input("Qual a distância em metros: "))
-        tempo = float(input("Qual foi o tempo de corrida em minutos: "))
+        while True:
+            try:
+                distancia = float(input("Qual a distância em metros: "))
+                break
+            except ValueError:
+                print("tente um numero")
+        while True:
+            try:
+                tempo = float(input("Qual foi o tempo de corrida em minutos: "))
+                break
+            except ValueError:
+                print("tente um numero")
         localizacao = input("Qual foi a localização: ")
         clima = input("Quais foram as condições climáticas: ")
         treino = input("Como foi o treino: ")
@@ -40,15 +64,40 @@ def alterar(nome):
     try:
         arquivo = open(f"{nome}.txt", "w")
         while True:
-            data = input("Qual a data: ")
+            data = input("Qual a data (YYYY-MM-DD): ")
             if len(data) == 10 and data[4] == '-' and data[7] == '-':
                 ano, mes, dia = data[:4], data[5:7], data[8:]
                 if ano.isdigit() and mes.isdigit() and dia.isdigit():
-                    break
+                    ano, mes, dia = int(ano), int(mes), int(dia)
+                    if 1 <= mes <= 12:
+                        dias_no_mes = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+                        if mes == 2 and (ano % 4 == 0 and (ano % 100 != 0 or ano % 400 == 0)):
+                            dias_no_mes[1] = 29
+                        if 1 <= dia <= dias_no_mes[mes - 1]:
+                            arquivo.write(data + "\n")
+                            print("Data salva com sucesso!")
+                            break
+                        else:
+                            print("Dia inválido. Tente novamente.")
+                    else:
+                        print("Mês inválido. Tente novamente.")
+                else:
+                    print("Ano, mês ou dia não são números. Tente novamente.")
             else:
                 print("Tente escrever a data no formato (YYYY-MM-DD) Y=ano M-mes D=dia")
-        distancia = float(input("Qual a distância em metros: "))
-        tempo = float(input("Qual foi o tempo de corrida em minutos: "))
+        while True:
+            try:
+                distancia = float(input("Qual a distância em metros: "))
+                break
+            except ValueError:
+                print("tente um numero")
+
+        while True:
+            try:
+                tempo = float(input("Qual foi o tempo de corrida em minutos: "))
+                break
+            except ValueError:
+                print("tente um numero")
         localizacao = input("Qual foi a localização: ")
         clima = input("Quais foram as condições climáticas: ")
         treino = input("Como foi o treino: ")
@@ -336,6 +385,9 @@ while True:
 
     elif esc==4:
         cont = 0
+        for treino in arquivos_treino:
+            print(f"Treino {cont + 1}: {treino}")
+            cont += 1
         nome = input("Qual arquivo deseja alterar: ").lower().strip()
         caminho = arquivos_treino.get(nome)
         if caminho and os.path.exists(caminho):

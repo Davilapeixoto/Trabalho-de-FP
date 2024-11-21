@@ -1,0 +1,7 @@
+2000-12-30
+Data: 2000-12-30
+Distância: 5000.0
+Tempo: 23.0
+Localização: f
+Clima: sd
+Treino: s
