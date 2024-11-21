@@ -244,7 +244,10 @@ def mostrar_metas(metas):
         else:
             print("\nMeta(s) Atual(is):")
             for idx, (descricao, valor) in enumerate(metas, start=1):
-                print(f"{idx}. {descricao} - {valor}km")
+                if valor==0:
+                    print(f"{idx}. {descricao} - Concluido")
+                else:
+                    print(f"{idx}. {descricao} - {valor}km")
     except Exception as e:
         print(f"Erro ao exibir as metas: {e}")
 
