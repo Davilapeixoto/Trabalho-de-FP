@@ -4,7 +4,7 @@
 
 - *Python instalado*.
 - *matplotlib instalada na maquina*.
-- *como instalar matplotlib*: Abra o CMD e execute o comando (pip install --upgrade pip). Certifique-se de que a versão seja a 24.3.1. Ainda no CMD, execute o comando (curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py). Em seguida, execute (pip install matplotlib), e a instalação será realizada com sucesso.
+- *como instalar matplotlib*: Abra o CMD e execute o comando (pip install --upgrade pip). Certifique-se de que a versão seja a 24.3.1. Ainda no CMD, execute o comando (curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py) caso sua maquina não possua o pip. Em seguida, execute (pip install matplotlib), e a instalação será realizada com sucesso.
 
 
 ## 1. Criar um Treino/Competição 
