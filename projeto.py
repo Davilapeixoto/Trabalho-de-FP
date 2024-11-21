@@ -353,7 +353,7 @@ while True:
     if esc==1:
         nome = input("Qual o nome do novo treino: ")
         if os.path.exists(f"{nome}.txt"):
-            print("Treino existente: Use outro nome\n")
+            print("Treino/competição existente: Use outro nome\n")
         else:
             salvar()
             arquivos_treino=carregar()
@@ -362,7 +362,7 @@ while True:
     elif esc == 2:
         cont = 0
         for treino in arquivos_treino:
-            print(f"Treino {cont + 1}: {treino}")
+            print(f"Treino/competição {cont + 1}: {treino}")
             cont += 1
         nome = input("Qual arquivo deseja ver: ").lower().strip()
         caminho = arquivos_treino.get(nome)
@@ -392,7 +392,7 @@ while True:
     elif esc==4:
         cont = 0
         for treino in arquivos_treino:
-            print(f"Treino {cont + 1}: {treino}")
+            print(f"Treino/competição {cont + 1}: {treino}")
             cont += 1
         nome = input("Qual arquivo deseja alterar: ").lower().strip()
         caminho = arquivos_treino.get(nome)
@@ -400,7 +400,7 @@ while True:
             alterar(nome)
             print("Arquivo alterado\n")
         else:
-            print("Treino não encontrado no histórico ou inexistente.\n")
+            print("Treino/competição  não encontrado no histórico ou inexistente.\n")
     
     elif esc==5:
         metas = arquivo_metas()
@@ -464,7 +464,7 @@ while True:
                     if not linha.startswith(f"{nome}:"):
                         historico.write(linha)
         else:
-            print("Treino não existe\n")
+            print("Treino/competição não existe\n")
     elif esc ==8:
         os.system("cls")
     elif esc==9:
