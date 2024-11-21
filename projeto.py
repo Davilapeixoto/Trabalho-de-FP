@@ -22,6 +22,9 @@ def salvar():
         print("Erro inesperado")
     with open("historico.txt", "a") as historico: 
         historico.write(f"{nome}:{caminho}\n")
+
+
+
 def alterar(nome):
     try:
         arquivo = open(f"{nome}.txt", "w")
@@ -38,6 +41,9 @@ def alterar(nome):
         print("Tente um numero")
     except Exception:
         print("Erro inesperado")
+
+
+
 def carregar():
     arquivo_nome={}
     if os.path.exists("historico.txt"):
@@ -48,6 +54,9 @@ def carregar():
                     chave, caminho = linha.split(":", 1)
                     arquivo_nome[chave] = caminho
     return arquivo_nome
+
+
+
 def gerar_grafico():
     datas = []
     distancias = []
@@ -84,6 +93,9 @@ def gerar_grafico():
         plt.show()
     else:
         print("Não há dados suficientes para gerar o gráfico.")
+
+
+
 def arquivo_metas():
     try:
         if os.path.exists("metas.txt"):
@@ -97,6 +109,9 @@ def arquivo_metas():
     except Exception as e:
         print(f"Erro ao carregar o arquivo de metas: {e}")
         return []
+    
+
+
 def salvar_metas(metas):
     try:
         with open("metas.txt","w") as file:
@@ -104,6 +119,9 @@ def salvar_metas(metas):
                 file.write(f"{descricao},{valor}\n")
     except Exception as e:
         print(f"Erro ao salvar as metas no arquivo: {e}")
+
+
+
 def adicionar_meta(metas):
     try:
         descricao = input("Digite a descrição da meta (exemplo: Correr 100 km por mês ou melhorar o tempo em 5 km):")
@@ -116,6 +134,9 @@ def adicionar_meta(metas):
             print("Insira um valor numérico válido para a meta")
     except Exception as e:
         print(f"Erro ao adicionar a meta: {e}")
+
+
+
 def atualizar_meta(metas):
     try:
         if not metas:
@@ -141,6 +162,9 @@ def atualizar_meta(metas):
             print("Número de meta inválido.")
     except Exception as e:
         print(f"Erro ao atualizar a meta: {e}")
+
+
+
 def mostrar_metas(metas):
     try:
         if not metas:
@@ -148,9 +172,12 @@ def mostrar_metas(metas):
         else:
             print("\nMeta(s) Atual(is):")
             for idx, (descricao, valor) in enumerate(metas, start=1):
-                print(f"{idx}. {descricao} - {valor}")
+                print(f"{idx}. {descricao} - {valor}km")
     except Exception as e:
         print(f"Erro ao exibir as metas: {e}")
+
+
+
 def registrar_progresso(metas):
     try:
         if not metas:
@@ -160,7 +187,7 @@ def registrar_progresso(metas):
         meta_id = (input("Escolha o número da meta para registrar o progresso em: "))
         if meta_id.isdigit() and 1 <= int(meta_id) <= len(metas):
             meta_id = int(meta_id) 
-            progresso = input("Digite o progresso(exemplo: Corri 10 km): ")
+            progresso = input("Digite o progresso(exemplo: 10): ")
             if progresso.isdigit():
                 progresso = int(progresso)
                 descricao, valor_meta = metas[meta_id - 1]
@@ -168,7 +195,7 @@ def registrar_progresso(metas):
                 if valor_meta < 0:
                     valor_meta = 0
                 metas[meta_id - 1] [1] = valor_meta
-                print(f"Progresso registrado: {progresso} para a meta de {metas[meta_id - 1][0]} com valor {metas[meta_id - 1][1]}.")
+                print(f"Progresso registrado: Faltam {metas[meta_id - 1][1]} km ou metros para bater a meta de ({metas[meta_id - 1][0]}).")
                 salvar_metas(metas)
                 if valor_meta == 0:
                     print(f"a sua meta {descricao} foi atingida.")
@@ -181,7 +208,6 @@ def registrar_progresso(metas):
     except Exception as e:
         print(f"Erro ao registrar o progresso: {e}")
 
-arquivos_treino=carregar()
 
 
 def filtrar_distancia():
@@ -207,8 +233,9 @@ def filtrar_distancia():
                         except Exception:
                             print("Erro inesperado!")
 
+
+
 def filtrar_tempos():
-    
     try:
         t = float(input("Qual tempo você quer ver: "))
     except ValueError:
@@ -230,13 +257,22 @@ def filtrar_tempos():
                             print(f"Erro ao interpretar os tempos no treino {treino}.")
                         except Exception:
                             print("Erro inesperado!")
+
+arquivos_treino=carregar()
+hist=[]
+
+
 while True:
     print("1-Criar um treino\n2-visualizar treinos\n3-analisar treino\n4-atualizar treinos\n5-Implementar Metas e desafios\n6-Treino aleatorio\n7-deletar\n8-limpar terminal\n9-Sair\n10-gerar grafico")
     try:
-        esc = int(input("O que deseja?"))
+        esc = int(input("O que deseja?\n"))
+        if esc > 10:
+            print("Tente um número entre 1 e 10\n")
     except ValueError:
-        print("Tente um número válido")
+        print("Tente um número válido\n")
         continue
+
+
     if esc==1:
         nome = input("Qual o nome do novo treino: ")
         if os.path.exists(f"{nome}.txt"):
@@ -244,6 +280,8 @@ while True:
         else:
             salvar()
             arquivos_treino=carregar()
+
+
     elif esc == 2:
         cont = 0
         for treino in arquivos_treino:
@@ -256,6 +294,7 @@ while True:
                 print(arquivo.read())
         else:
             print("Arquivo não encontrado no histórico ou inexistente.")
+
 
     elif esc == 3:
         try:
@@ -271,9 +310,9 @@ while True:
         except ValueError:
             print("Digite um número válido!\n")
                 
+
     elif esc==4:
         cont = 0
-        
         nome = input("Qual arquivo deseja alterar: ").lower().strip()
         caminho = arquivos_treino.get(nome)
         if caminho and os.path.exists(caminho):
@@ -288,7 +327,7 @@ while True:
             print("\nSistema de Gerenciamento de Metas\n1.Adicionar uma meta\n2.Mostrar metas\n3.Registrar progresso de uma meta\n4.Atualizar meta\n5.Sair")
 
             try:
-                opcao = int(input("Escolha uma opção "))
+                opcao = int(input("Escolha uma opção: "))
                 if opcao == 1:
                     adicionar_meta(metas)
                 elif opcao == 2:
@@ -308,13 +347,25 @@ while True:
                 print(f"Erro inesperado: {e}")
     
     elif esc==6:
-        print("Treino aleatório: ")
-        aleatorio = [1,2,3,4,5,6,7]
-        n = random.choice(aleatorio)
-        remove = aleatorio.remove(n)
-        with open("Davila/pp.txt", "r") as arquivo:
-                linhas = [linha.strip() for linha in arquivo.readlines()] 
-                print(linhas[n-1]) 
+        print("Treino aleatorio: ")
+        treino_aleat = ["Treino1: Treino de sprint: Correr 1 minuto andar 2 minutos X 12",
+"Treino2: Treino força: Caminhar com peso em superficie inclinada 30 minutos",
+"Treino3: Treino misto: Correr ate a falha descansar 1:30 minutos X 15",
+"Treino4: Treino de fadiga: Correr sem pausa",  
+"Treino5: Treino de sfinkter: Fazer escala de corrida/andada 10x4",
+"Treino6: Treino de jogador: Set de 1 hora com pace alto",
+"Treino7: Treino de ronnie: Afunedo ate a falha"]
+        while True:
+            treino_sugerido = random.choice(treino_aleat)
+            if treino_sugerido not in  hist:
+                hist.append(treino_sugerido)
+                print(treino_sugerido)
+                break
+            elif len(hist)>=7:
+                print("Cota batida")
+                break
+
+
     elif esc==7:
         cont = 0
         for treino in arquivos_treino:
