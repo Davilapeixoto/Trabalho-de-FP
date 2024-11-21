@@ -1,0 +1,8 @@
+2000-05-12
+Tipo: corrida
+Data: 2000-05-12
+Distância: 2310.0
+Tempo: 20.0
+Localização: Xique-Xique
+Clima: chuvosa
+Feedback: cansativa

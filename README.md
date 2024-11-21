@@ -1,6 +1,6 @@
 # Manual do Gerenciamento de Treino
 
-## 1. Criar um Treino
+## 1. Criar um Treino/Competição 
 Ao escolher a 1ª opção, o usuário pode criar um treino. As etapas são:
 
 - *Nome do treino*: O usuário insere o nome do novo treino.
@@ -12,10 +12,10 @@ Ao escolher a 1ª opção, o usuário pode criar um treino. As etapas são:
 - *Condições climáticas*: O usuário insere as condições climáticas.
 - *Descrição do treino*: O usuário descreve como foi o treino.
 
-## 2. Visualizar Treinos Realizados
+## 2. Visualizar Treino/Competição Realizados
 Ao escolher a 2ª opção, o usuário pode visualizar os treinos realizados. Ele precisa escrever o nome do arquivo ou treino. Após isso, o programa exibirá o arquivo ou treino desejado.
 
-## 3. Analisar Treinos por Distância ou Tempo
+## 3. Analisar Treino/Competição por Distância ou Tempo
 Ao escolher a 3ª opção, o usuário é indagado se deseja analisar seus treinos por distância ou por tempo:
 
 - *Por distância*: O usuário insere a distância (em metros) e ele recebe todos os treinos com essa distância percorrida. Em seguida, o usuário pode pressionar Enter para voltar ao menu.
@@ -36,7 +36,7 @@ Ao escolher a 5ª opção, o usuário acessa o sistema de gerenciamento de metas
 ## 6. Gerar Treino Aleatório
 Ao escolher a 6ª opção, será gerado um treino aleatório, sem repetições de treinos anteriores.
 
-## 7. Excluir Treino
+## 7. Excluir Treino/Competição 
 Ao escolher a 7ª opção, o usuário pode visualizar todos os treinos realizados e selecionar um para excluí-lo dos registros.
 
 ## 8. Limpar o Terminal

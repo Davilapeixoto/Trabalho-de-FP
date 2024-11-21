@@ -1,6 +1,0 @@
-Data: 2024-08-31
-Distância: 2321.0
-Tempo: 5.0
-Localização: 
-Clima: 
-Treino: 
