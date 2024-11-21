@@ -360,18 +360,21 @@ while True:
 
 
     elif esc == 2:
-        cont = 0
-        for treino in arquivos_treino:
-            print(f"Treino/competição {cont + 1}: {treino}")
-            cont += 1
-        nome = input("Qual arquivo deseja ver: ").lower().strip()
-        caminho = arquivos_treino.get(nome)
-        if caminho and os.path.exists(caminho):
-            with open(caminho, "r") as arquivo:
-                print(arquivo.read())
-                input("Pressione Enter para voltar ao menu!")
+        if arquivos_treino:
+            cont = 0
+            for treino in arquivos_treino:
+                print(f"Treino/competição {cont + 1}: {treino}")
+                cont += 1
+            nome = input("Qual arquivo deseja ver: ").lower().strip()
+            caminho = arquivos_treino.get(nome)
+            if caminho and os.path.exists(caminho):
+                with open(caminho, "r") as arquivo:
+                    print(arquivo.read())
+                    input("Pressione Enter para voltar ao menu!")
+            else:
+                print("Arquivo não encontrado no histórico ou inexistente.\n")
         else:
-            print("Arquivo não encontrado no histórico ou inexistente.\n")
+            print("Sem Registros")
 
 
     elif esc == 3:
@@ -390,17 +393,20 @@ while True:
                 
 
     elif esc==4:
-        cont = 0
-        for treino in arquivos_treino:
-            print(f"Treino/competição {cont + 1}: {treino}")
-            cont += 1
-        nome = input("Qual arquivo deseja alterar: ").lower().strip()
-        caminho = arquivos_treino.get(nome)
-        if caminho and os.path.exists(caminho):
-            alterar(nome)
-            print("Arquivo alterado\n")
+        if arquivos_treino:
+            cont = 0
+            for treino in arquivos_treino:
+                print(f"Treino/competição {cont + 1}: {treino}")
+                cont += 1
+            nome = input("Qual arquivo deseja alterar: ").lower().strip()
+            caminho = arquivos_treino.get(nome)
+            if caminho and os.path.exists(caminho):
+                alterar(nome)
+                print("Arquivo alterado\n")
+            else:
+                print("Treino/competição  não encontrado no histórico ou inexistente.\n")
         else:
-            print("Treino/competição  não encontrado no histórico ou inexistente.\n")
+            print("Sem Registros")
     
     elif esc==5:
         metas = arquivo_metas()
@@ -457,6 +463,7 @@ while True:
             caminho = arquivos_treino.pop(nome)
             if os.path.exists(caminho):
                 os.remove(caminho)
+                print("Registro apagado")
             with open("historico.txt", "r") as historico:
                 linhas = historico.readlines()
             with open("historico.txt", "w") as historico:
