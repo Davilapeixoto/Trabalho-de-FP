@@ -1,6 +1,6 @@
 # Manual do Gerenciamento de Treino
 
-## Pre-requisitos
+## Pré-requisitos
 
 - *Python instalado*.
 - *matplotlib instalada na maquina*.
