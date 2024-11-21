@@ -266,7 +266,7 @@ while True:
     print("1-Criar um treino\n2-visualizar treinos\n3-analisar treino\n4-atualizar treinos\n5-Implementar Metas e desafios\n6-Treino aleatorio\n7-deletar\n8-limpar terminal\n9-Sair\n10-gerar grafico")
     try:
         esc = int(input("O que deseja?\n"))
-        if esc > 10:
+        if 1 > esc > 10:
             print("Tente um número entre 1 e 10\n")
     except ValueError:
         print("Tente um número válido\n")
@@ -276,7 +276,7 @@ while True:
     if esc==1:
         nome = input("Qual o nome do novo treino: ")
         if os.path.exists(f"{nome}.txt"):
-            print("Treino existente: Use outro nome")
+            print("Treino existente: Use outro nome\n")
         else:
             salvar()
             arquivos_treino=carregar()
@@ -293,7 +293,7 @@ while True:
             with open(caminho, "r") as arquivo:
                 print(arquivo.read())
         else:
-            print("Arquivo não encontrado no histórico ou inexistente.")
+            print("Arquivo não encontrado no histórico ou inexistente.\n")
 
 
     elif esc == 3:
@@ -306,7 +306,7 @@ while True:
                 filtrar_tempos()
                 input("Pressione Enter para voltar ao menu!")
             else:
-                print("Analise inválida!")
+                print("Analise inválida!\n")
         except ValueError:
             print("Digite um número válido!\n")
                 
@@ -317,9 +317,9 @@ while True:
         caminho = arquivos_treino.get(nome)
         if caminho and os.path.exists(caminho):
             alterar(nome)
-            print("Arquivo alterado")
+            print("Arquivo alterado\n")
         else:
-            print("Treino não encontrado no histórico ou inexistente.")
+            print("Treino não encontrado no histórico ou inexistente.\n")
     
     elif esc==5:
         metas = arquivo_metas()
@@ -337,14 +337,14 @@ while True:
                 elif opcao == 4:
                     atualizar_meta(metas)
                 elif opcao == 5:
-                    print("Saindo do sistema.")
+                    print("Saindo do sistema.\n")
                     break
                 else:
-                    print("Opção inválida.Tente uma opção de 1 a 5")
+                    print("Opção inválida.Tente uma opção de 1 a \n")
             except ValueError:
-                print("Insira uma opção válida.")
+                print("Insira uma opção válida.\n")
             except Exception as e:
-                print(f"Erro inesperado: {e}")
+                print(f"Erro inesperado: {e}\n")
     
     elif esc==6:
         print("Treino aleatorio: ")
@@ -362,7 +362,7 @@ while True:
                 print(treino_sugerido)
                 break
             elif len(hist)>=7:
-                print("Cota batida")
+                print("Cota batida\n")
                 break
 
 
@@ -383,7 +383,7 @@ while True:
                     if not linha.startswith(f"{nome}:"):
                         historico.write(linha)
         else:
-            print("Treino não existe")
+            print("Treino não existe\n")
     elif esc ==8:
         os.system("cls")
     elif esc==9:
