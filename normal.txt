@@ -1,0 +1,6 @@
+Data: 2005-06-12
+Distância: 543.0
+Tempo: 1.0
+Localização: recife
+Clima: boas
+Treino: oksg

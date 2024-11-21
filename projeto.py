@@ -1,13 +1,24 @@
 import os
 import random
-import matplotlib.pyplot as plt
-from datetime import datetime
 os.system("cls")
+try:    
+    import matplotlib.pyplot as plt
+except ModuleNotFoundError:
+    print("Modulo não encontrado, instale a matplotlib")
+    input("Pressione Enter para voltar ao menu!")
+from datetime import datetime
 
 def salvar():
     try:
         arquivo = open(f"{nome}.txt", "a")
-        data = input("Qual a data: ")
+        while True:
+            data = input("Qual a data: ")
+            if len(data) == 10 and data[4] == '-' and data[7] == '-':
+                ano, mes, dia = data[:4], data[5:7], data[8:]
+                if ano.isdigit() and mes.isdigit() and dia.isdigit():
+                    break
+            else:
+                print("Tente escrever a data no formato (YYYY-MM-DD) Y=ano M-mes D=dia")
         distancia = float(input("Qual a distância em metros: "))
         tempo = float(input("Qual foi o tempo de corrida em minutos: "))
         localizacao = input("Qual foi a localização: ")
@@ -28,7 +39,14 @@ def salvar():
 def alterar(nome):
     try:
         arquivo = open(f"{nome}.txt", "w")
-        data = input("Qual a data: ")
+        while True:
+            data = input("Qual a data: ")
+            if len(data) == 10 and data[4] == '-' and data[7] == '-':
+                ano, mes, dia = data[:4], data[5:7], data[8:]
+                if ano.isdigit() and mes.isdigit() and dia.isdigit():
+                    break
+            else:
+                print("Tente escrever a data no formato (YYYY-MM-DD) Y=ano M-mes D=dia")
         distancia = float(input("Qual a distância em metros: "))
         tempo = float(input("Qual foi o tempo de corrida em minutos: "))
         localizacao = input("Qual foi a localização: ")
@@ -58,41 +76,46 @@ def carregar():
 
 
 def gerar_grafico():
-    datas = []
-    distancias = []
-    if os.path.exists("historico.txt"):
-        with open("historico.txt", "r") as historico:
-            for linha in historico:
-                linha = linha.strip()
-                if linha.endswith(".txt"):
-                    treino_nome = linha.split(":")[0]
-                    caminho = linha.split(":")[1]
-                    if os.path.exists(caminho):
-                        with open(caminho, "r") as treino:
-                            data = distancia = None
-                            for line in treino:
-                                if "Data" in line:
-                                    data = line.split(":")[1].strip()
-                                elif "Distância" in line:
-                                    distancia = float(line.split(":")[1].strip())
-                                if data and distancia:
-                                    datas.append(data)
-                                    distancias.append(distancia)
-                                    break
-    if datas and distancias:
-        sorted_dates = sorted(zip(datas, distancias), key=lambda x: datetime.strptime(x[0], "%Y-%m-%d"))
-        sorted_datas, sorted_distancias = zip(*sorted_dates)
-        plt.figure(figsize=(10, 6))
-        plt.plot(sorted_datas, sorted_distancias, marker='o', linestyle='--', color='b', label='Distância (m)')
-        plt.xticks(rotation=45)
-        plt.xlabel('Data')
-        plt.ylabel('Distância (m)')
-        plt.title('Desempenho dos Treinos')
-        plt.tight_layout() 
-        plt.legend()
-        plt.show()
-    else:
-        print("Não há dados suficientes para gerar o gráfico.")
+    try:
+        datas = []
+        distancias = []
+        if os.path.exists("historico.txt"):
+            with open("historico.txt", "r") as historico:
+                for linha in historico:
+                    linha = linha.strip()
+                    if linha.endswith(".txt"):
+                        treino_nome = linha.split(":")[0]
+                        caminho = linha.split(":")[1]
+                        if os.path.exists(caminho):
+                            with open(caminho, "r") as treino:
+                                data = distancia = None
+                                for line in treino:
+                                    if "Data" in line:
+                                        data = line.split(":")[1].strip()
+                                    elif "Distância" in line:
+                                        distancia = float(line.split(":")[1].strip())
+                                    if data and distancia:
+                                        datas.append(data)
+                                        distancias.append(distancia)
+                                        break
+        if datas and distancias:
+            sorted_dates = sorted(zip(datas, distancias), key=lambda x: datetime.strptime(x[0], "%Y-%m-%d"))
+            sorted_datas, sorted_distancias = zip(*sorted_dates)
+            plt.figure(figsize=(10, 6))
+            plt.plot(sorted_datas, sorted_distancias, marker='o', linestyle='--', color='b', label='Distância (m)')
+            plt.xticks(rotation=45)
+            plt.xlabel('Data')
+            plt.ylabel('Distância (m)')
+            plt.title('Desempenho dos Treinos')
+            plt.tight_layout() 
+            plt.legend()
+            plt.show()
+        else:
+            print("Não há dados suficientes para gerar o gráfico.")
+    except Exception:
+        print("Necessario instalar o matplotlib")
+        input("Pressione Enter para voltar ao menu!")
+
 
 
 

@@ -1,6 +1,6 @@
-Data: 11/12/2006
-Distância: 10.0
-Tempo: 12
-Localização: paiva
-Clima: tiroteio
-Treino: otimo
+Data: 2005-02-16
+Distância: 600.0
+Tempo: 6.0
+Localização: recife
+Clima: normais
+Treino: muito bom

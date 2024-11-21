@@ -1,1 +1,3 @@
+normal:normal.txt
+treno2:treno2.txt
 novo:novo.txt

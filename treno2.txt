@@ -1,0 +1,6 @@
+Data: 2005-06-05
+Distância: 2000.0
+Tempo: 21.0
+Localização: recife
+Clima: boas
+Treino: bom
