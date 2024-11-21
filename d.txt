@@ -1,0 +1,8 @@
+2001-05-20
+Tipo: corrida
+Data: 2001-05-20
+Distância: 5000.0
+Tempo: 21.0
+Localização: londres
+Clima: boas
+Feedback: boa

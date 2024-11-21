@@ -11,6 +11,7 @@ from datetime import datetime
 def salvar():
     try:
         arquivo = open(f"{nome}.txt", "a")
+        tipo=input("Qual o tipo de exercicio (Exemplo corrida ou maratona): ")
         while True:
             data = input("Qual a data (YYYY-MM-DD): ")
             if len(data) == 10 and data[4] == '-' and data[7] == '-':
@@ -47,8 +48,8 @@ def salvar():
                 print("tente um numero")
         localizacao = input("Qual foi a localização: ")
         clima = input("Quais foram as condições climáticas: ")
-        treino = input("Como foi o treino: ")
-        arquivo.write(f"Data: {data}\nDistância: {str(distancia)}\nTempo: {str(tempo)}\nLocalização: {localizacao}\nClima: {clima}\nTreino: {treino}\n")
+        treino = input(f"Como foi o/a {tipo}: ")
+        arquivo.write(f"Tipo: {tipo}\nData: {data}\nDistância: {str(distancia)}\nTempo: {str(tempo)}\nLocalização: {localizacao}\nClima: {clima}\nFeedback: {treino}\n")
         arquivo.close()
         caminho = f"{nome}.txt"
     except ValueError:
@@ -63,6 +64,7 @@ def salvar():
 def alterar(nome):
     try:
         arquivo = open(f"{nome}.txt", "w")
+        tipo=input("Qual o tipo de exercicio (Exemplo corrida ou maratona): ")
         while True:
             data = input("Qual a data (YYYY-MM-DD): ")
             if len(data) == 10 and data[4] == '-' and data[7] == '-':
@@ -100,8 +102,8 @@ def alterar(nome):
                 print("tente um numero")
         localizacao = input("Qual foi a localização: ")
         clima = input("Quais foram as condições climáticas: ")
-        treino = input("Como foi o treino: ")
-        arquivo.write(f"Data: {data}\nDistância: {str(distancia)}\nTempo: {str(tempo)}\nLocalização: {localizacao}\nClima: {clima}\nTreino: {treino}\n")
+        treino = input(f"Como foi o/a {tipo}: ")
+        arquivo.write(f"Tipo: {tipo}\nData: {data}\nDistância: {str(distancia)}\nTempo: {str(tempo)}\nLocalização: {localizacao}\nClima: {clima}\nFeedback: {treino}\n")
         arquivo.close()
         caminho = f"{nome}.txt"
     except ValueError:
@@ -367,6 +369,7 @@ while True:
         if caminho and os.path.exists(caminho):
             with open(caminho, "r") as arquivo:
                 print(arquivo.read())
+                input("Pressione Enter para voltar ao menu!")
         else:
             print("Arquivo não encontrado no histórico ou inexistente.\n")
 
